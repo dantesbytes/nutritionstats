@@ -123,7 +123,6 @@ func (f FiberGram) GetPoints(st ScoreType) int {
 
 	return getPointsFromRange(float64(f), fiberLevels)
 
-
 }
 
 func (p ProtienGram) GetPoints(st ScoreType) int {
