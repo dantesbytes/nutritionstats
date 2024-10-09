@@ -7,6 +7,8 @@ type NutritionalScore struct {
 	ScoreType ScoreType
 }
 
+// overal grade of your nutrition score 
+
 var scoreToLetter = []string{"A","B","C","D","E"}
 
 func GetNutritionalScore(n NutritionalData, st ScoreType) NutritionalScore {
