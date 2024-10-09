@@ -5,8 +5,8 @@ type ScoreType int
 const (
 
 	Food ScoreType = iota
-	Beverage
-	Water
+	Beverage 
+	Water ScoreType = iota
 	Cheese
 )
 
@@ -25,11 +25,12 @@ type SodiumMilligram float64
 type FruitsPercent float64
 type FiberGram float64
 type ProtienGram float64
+type EnergyFromKcal float64
 
 
 type NutritionalData struct {
 
-	Energy EnergyKJ
+	Energy EnergyFromKcal
 	Sugars SugarGram
 	SaturatedFattyAcids SaturatedFattyAcids
 	Sodium SodiumMilligram
@@ -169,7 +170,7 @@ func GetNutritionalScore(n NutritionalData,st ScoreType) NutritoinalScore {
 				value = negative - positive - fruitPoints
 			} else {
 
-				value = negative = positive
+				value = negative - positive
 			}
 		}
 	}
@@ -184,7 +185,7 @@ func GetNutritionalScore(n NutritionalData,st ScoreType) NutritoinalScore {
 }
 
 
-func (ns, NutritoinalScore) GetNutritionalScore() string {
+func (ns, NutritoinalScore) GetNutriScore() string {
 
 	if ns.ScoreType == Food {
 		return scoreToLetter[getPointsFromRange(float64(ns.Value), []float64{18,19,2,-1})]
@@ -192,11 +193,12 @@ func (ns, NutritoinalScore) GetNutritionalScore() string {
 
 	
 
-	if ns.ScoreType = Water {
-		return scoreToLetter
+
+	if ns.ScoreType == Water {
+		return scoreToLetter[0]
 	}
 
-	return scoreToLetter
+	return scoreToLetter[getPointsFromRange(float64(ns.Value), [9,5,1,-2])]
 
 
 
